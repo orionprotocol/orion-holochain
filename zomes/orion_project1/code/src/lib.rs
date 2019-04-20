@@ -82,93 +82,37 @@ define_zome! {
         register_broker: {
             inputs:
             outputs:
-            handler:
+            handler: register_broker
         }
 
-        update_balace: {
+        update_balance: {
+            inputs:
+            outputs:
+            handler: update_balance
         }
 
-        init_order_tx: {
+        init_order: {
+            inputs:
+            outputs:
+            handler: 
         }
 
         accept_order_tx: { 
+            inputs:
+            outputs:
+            handler: 
         }
 
         trade_tx: { 
+            inputs:
+            outputs:
+            handler: trades            
         }
 
     ]
     traits: {
         hc_public [create_list, add_item, get_list]
     }
-}
-
-
-
-
-
-
-//todo - examples
-#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
-struct List {
-    name: String
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
-struct ListItem {
-    text: String,
-    completed: bool
-}
-
-#[derive(Serialize, Deserialize, Debug, DefaultJson)]
-struct GetListResponse {
-    name: String,
-    items: Vec<ListItem>
-}
-
-fn handle_create_list(list: List) -> ZomeApiResult<Address> {
-    // define the entry
-    let list_entry = Entry::App(
-        "list".into(),
-        list.into()
-    );
-
-    // commit the entry and return the address
-    hdk::commit_entry(&list_entry)
-}
-
-
-fn handle_add_item(list_item: ListItem, list_addr: HashString) -> ZomeApiResult<Address> {
-    // define the entry
-    let list_item_entry = Entry::App(
-        "listItem".into(),
-        list_item.into()
-    );
-
-    let item_addr = hdk::commit_entry(&list_item_entry)?; // commit the list item
-    hdk::link_entries(&list_addr, &item_addr, "items")?; // if successful, link to list address
-    Ok(item_addr)
-}
-
-
-fn handle_get_list(list_addr: HashString) -> ZomeApiResult<GetListResponse> {
-    // load the list entry. Early return error if it cannot load or is wrong type
-    let list = hdk::utils::get_as_type::<List>(list_addr.clone())?;
-
-    // try and load the list items, filter out errors and collect in a vector
-    let list_items = hdk::get_links(&list_addr, "items")?.addresses()
-        .iter()
-        .map(|item_address| {
-            hdk::utils::get_as_type::<ListItem>(item_address.to_owned())
-        })
-        .filter_map(Result::ok)
-        .collect::<Vec<ListItem>>();
-
-    // if this was successful then return the list items
-    Ok(GetListResponse{
-        name: list.name,
-        items: list_items
-    })
 }
 
 
