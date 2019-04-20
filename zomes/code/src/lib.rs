@@ -9,7 +9,6 @@ extern crate serde_derive;
 
 #[macro_use]
 extern crate holochain_core_types_derive;
-
 use hdk::{
     error::ZomeApiResult,
     holochain_core_types::{
@@ -106,6 +105,9 @@ define_zome! {
 
 
 
+
+
+
 //todo - examples
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 struct List {
@@ -171,57 +173,77 @@ fn handle_get_list(list_addr: HashString) -> ZomeApiResult<GetListResponse> {
 
 
 
-
-
+struct TradeCurrencyPair(String, String)
 
 struct Broker {
     name: String,
-    pubkey_signed_by_agent: String
+    signed_pubkey: String
 }
 
 
 
+//todo
 struct Balance {
-    "balance": "Map[String, Long]",
-    "timestamp": "Long",
-    "signature": "signature"
+    balance: "Map[String, Long]",
+    inserted_at: i64
+    signature: String
 }
 
 
 struct Order {
-  exchange_id: i64,
-  order_id: i64,
-  symbol: String,
-  quantity: i64,
-  price: i64, //todo - consider crate currency 
-  timestamp: i64
+    id: i64,
+    exchange_id: i64,
+    currency: String, //the code
+    quantity: i64,
+    price: i64, //todo - consider crate currency 
+    inserted_at: i64
 }
 
 
-
-// "Status": {
-//   "name": "NEW|FILLED|CANCELED|PARTIALLY_FILLED|PARTIALLY_CANCELLED",
-//   "timestamp": "Время создание статуса"
-// }
-//"Статусы трейда: FILLED, CANCELED, PARTIALLY_FILLED, PARTIALLY_CANCELLED, NEW"
 enum TradeStatus {
-  NEW,
-  FILLED,
-  CANCELED,
-  PARTIALLY_FILLED,
-  PARTIALLY_CANCELLED
+    New,
+    Filled,
+    Canceled,
+    PartiallyFilled,
+    PartiallyCancelled
 }
-
-
 
 struct Trade {
-  order_id: i64,
-  trade_id: i64,
-  price: i64,
-  quantity: i64,
-  status: TradeStatus,
-  timestamp: i64
- }
-
-fn sign() -> String {
+    id: i64,
+    order_id: i64,
+    price: i64,
+    quantity: i64,
+    inserted_at: i64
 }
+
+struct Transaction {
+    id: i64,
+    trade_id: i64,
+    status: TradeStatus,
+    inserted_at: i64
+}
+
+
+fn sign(data: &str, key: &str) -> String {
+}
+
+fn validate_signature(data: &str, key: &str) -> bool {
+}
+
+
+
+
+pub fn registerBroker(name: String) -> Result<i64, Error> {
+
+}
+
+pub fn updateBalance() -> ? {
+
+}
+
+pub fn createOrder() -> ? { }
+
+
+pub fn acceptOrder() -> ? { }
+
+pub fn trade() -> ? { }
