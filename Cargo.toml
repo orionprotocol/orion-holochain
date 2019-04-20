@@ -1,0 +1,10 @@
+[package]
+name = "holochain_project1"
+version = "0.1.0"
+authors = ["alex maslakoff <alex@serendipia.email>"]
+
+[dependencies]
+hdk = { git = "https://github.com/holochain/holochain-rust", tag = "v0.0.11-alpha1" }
+
+[lib]
+path = "src/lib.rs"
