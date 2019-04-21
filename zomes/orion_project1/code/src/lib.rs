@@ -26,13 +26,16 @@ use hdk::{
 define_zome! {
     entries: [
         entry!(
-            name: "list",
-            description: "",
+            name: "broker",
+            description: "a middle man between a user and an exchange",
             sharing: Sharing::Public,
             validation_package: || hdk::ValidationPackageDefinition::Entry,
-            validation: |validation_data: hdk::EntryValidationData<List>| {
+            validation: |validation_data: hdk::EntryValidationData| {
                 Ok(())
             },
+
+
+
             links: [
                 to!(
                     "listItem",
@@ -44,15 +47,27 @@ define_zome! {
                 )
             ]
         ),
+
         entry!(
-            name: "listItem",
+            name: "order", //todo: rename to 'offer'?
             description: "",
             sharing: Sharing::Public,
             validation_package: || hdk::ValidationPackageDefinition::Entry,
-            validation: |validation_data: hdk::EntryValidationData<ListItem>| {
+            validation: |validation_data: hdk::EntryValidationData| {
+                Ok(())
+            }
+        ),
+
+        entry!(
+            name: "trade", //todo: rename to 'transaction'?
+            description: "",
+            sharing: Sharing::Public,
+            validation_package: || hdk::ValidationPackageDefinition::Entry,
+            validation: |validation_data: hdk::EntryValidationData| {
                 Ok(())
             }
         )
+
     ]
 
     genesis: || {
@@ -111,11 +126,13 @@ define_zome! {
 
     ]
     traits: {
-        hc_public [create_list, add_item, get_list]
+        hc_public [register_broker, update_balance, init_order, accept_order_tx, trade_tx]
     }
 }
 
+fn broker_definitions() -> ValidatingEntryType {
 
+}
 
 struct TradeCurrencyPair(String, String)
 
