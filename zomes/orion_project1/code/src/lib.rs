@@ -136,10 +136,6 @@ fn broker_definitions() -> ValidatingEntryType {
 
 struct TradeCurrencyPair(String, String)
 
-struct Broker {
-    name: String,
-    signed_pubkey: String
-}
 
 
 
@@ -148,40 +144,6 @@ struct Balance {
     balance: "Map[String, Long]",
     inserted_at: i64
     signature: String
-}
-
-
-struct Order {
-    id: i64,
-    exchange_id: i64,
-    currency: String, //the code
-    quantity: i64,
-    price: i64, //todo - consider crate currency 
-    inserted_at: i64
-}
-
-
-enum TradeStatus {
-    New,
-    Filled,
-    Canceled,
-    PartiallyFilled,
-    PartiallyCancelled
-}
-
-struct Trade {
-    id: i64,
-    order_id: i64,
-    price: i64,
-    quantity: i64,
-    inserted_at: i64
-}
-
-struct Transaction {
-    id: i64,
-    trade_id: i64,
-    status: TradeStatus,
-    inserted_at: i64
 }
 
 
