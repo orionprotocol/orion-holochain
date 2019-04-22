@@ -21,13 +21,25 @@ struct Offer {
     direction: Direction,
 
     //todo: these may be replaced with 'decimal' if needed
-    price: f64,
+    quoted_price_per_unit: f64,
     quantity: f64,
 
     inserted_at: i64
 }
 
 enum Direction {
-  Buy,
-  Sell
+    Buy,
+    Sell
+}
+
+fn calculate_total_price(ofr: Offer) -> f64 {
+    ofr.quantity * ofr.quoted_price_per_unit
+}
+
+fn create() {
+  unimplemented!()
+}
+
+fn accept() {
+  unimplemented!()
 }

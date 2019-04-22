@@ -24,3 +24,7 @@ pub fn create(name: &str, signature: &str) -> ZomeApiResult<Address> {
 pub fn get(address: Address) -> ZomeApiResult<Option<Entry>> {
     hdk::get_entry(&address)
 }
+
+fn trade() {
+  unimplemented!()
+}
