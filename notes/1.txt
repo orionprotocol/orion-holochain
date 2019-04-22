@@ -1,0 +1,6 @@
+1) 'price':
+
+for now it's in the smallest units of a currency 
+consider replacing it with 'currency' create or 'double'
+
+2)

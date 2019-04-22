@@ -3,12 +3,24 @@ use hdk::{
     entry_definition::ValidatingEntryType,
 };
 
-//todo: rename back to Trade?
+//todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Transaction {
-  //todo
+    id: i64,
+    offer_id: i64,
+    price: i64,
+    currency_code: String,
+    status: Status,
+    inserted_at: i64
 }
 
+enum Status {
+    New,
+    Filled,
+    Canceled,
+    PartiallyFilled,
+    PartiallyCancelled
+}
 
 pub fn definitions() -> ValidatingEntryType{
     entry!(
@@ -39,22 +51,4 @@ pub fn definitions() -> ValidatingEntryType{
         },
         links: []
     )
-}
-
-
-enum Status {
-    New,
-    Filled,
-    Canceled,
-    PartiallyFilled,
-    PartiallyCancelled
-}
-
-struct Transaction {
-    id: i64,
-    status: Status,
-    order_id: i64,
-    price: i64,
-    quantity: i64, //???
-    inserted_at: i64
 }
