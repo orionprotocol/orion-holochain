@@ -15,10 +15,10 @@ use hdk::holochain_core_types::{
 struct Offer {
     id: HashString,
     exchange_id: i64,
-    broker_id: i64,
-    base_asset: String,
-    quoted_asset: String,
-    side: Side,
+    broker_id: HashString,
+    base_asset_code: String,
+    quoted_asset_code: String,
+    direction: Direction,
 
     //todo: these may be replaced with 'decimal' if needed
     price: f64,
@@ -27,7 +27,7 @@ struct Offer {
     inserted_at: i64
 }
 
-enum Side {
+enum Direction {
   Buy,
   Sell
 }

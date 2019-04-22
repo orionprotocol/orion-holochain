@@ -7,9 +7,9 @@ use hdk::{
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Transaction {
     id: i64,
-    offer_id: i64,
-    price: i64,
-    currency_code: String,
+    offer_id: HashString,
+    price: f64,
+    asset_code: String,
     status: Status,
     inserted_at: i64
 }

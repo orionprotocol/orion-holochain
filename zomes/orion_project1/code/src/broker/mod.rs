@@ -6,6 +6,7 @@ use hdk::holochain_core_types::{
 };
 
 struct Broker {
+    id: HashString,
     name: String,
     signed_pubkey: String
 }
