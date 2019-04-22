@@ -31,19 +31,16 @@ pub fn definitions() -> ValidatingEntryType{
             hdk::ValidationPackageDefinition::Entry
         },
 
-        validation: |validation_data: hdk::EntryValidationData<KeyAnchor>| {
-            match validation_data
-            {
-                EntryValidationData::Create{entry:_domain_name,validation_data:_} =>
-                {
+        // todo
+        validation: |data: hdk::EntryValidationData<KeyAnchor>| {
+            match data {
+                EntryValidationData::Create{entry:_domain_name, data: _} => {
                     Ok(())
                 },
-                EntryValidationData::Modify{new_entry:_,old_entry:_,old_entry_header:_,validation_data:_} =>
-                {
+                EntryValidationData::Modify{new_entry:_,old_entry:_,old_entry_header:_, data: _} => {
                    Ok(())
                 },
-                EntryValidationData::Delete{old_entry:_,old_entry_header:_,validation_data:_} =>
-                {
+                EntryValidationData::Delete{old_entry:_,old_entry_header:_, data: _} => {
                    Ok(())
                 }
             }
