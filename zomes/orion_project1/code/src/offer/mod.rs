@@ -32,7 +32,7 @@ enum Direction {
     Sell
 }
 
-pub fn definitions() -> ValidatingEntryType {
+pub fn definition() -> ValidatingEntryType {
     entry!(
       name: "offer",
       description: "also called 'order'",

@@ -3,6 +3,8 @@ use hdk::{
     entry_definition::ValidatingEntryType,
 };
 
+use holochain_core_types_derive::DefaultJson;
+
 //todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Transaction {
@@ -14,6 +16,7 @@ pub struct Transaction {
     inserted_at: i64
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 enum Status {
     New,
     Filled,
@@ -22,7 +25,7 @@ enum Status {
     PartiallyCancelled
 }
 
-pub fn definitions() -> ValidatingEntryType {
+pub fn definition() -> ValidatingEntryType {
     entry!(
         name: "transaction",
         description: "also called 'trade'",

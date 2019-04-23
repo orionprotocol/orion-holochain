@@ -11,7 +11,7 @@ struct Broker {
     signed_pubkey: String
 }
 
-pub fn definitions() -> ValidatingEntryType {
+pub fn definition() -> ValidatingEntryType {
     entry!(
       name: "broker",
       description: "a middle man between a user and an exchange",

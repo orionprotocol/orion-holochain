@@ -12,7 +12,7 @@ struct Balance {
     updated_at: i64
 }
 
-pub fn definitions() -> ValidatingEntryType {
+pub fn definition() -> ValidatingEntryType {
     entry!(
       name: "balance",
       description: "",

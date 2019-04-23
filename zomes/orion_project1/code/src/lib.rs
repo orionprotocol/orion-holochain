@@ -27,10 +27,10 @@ pub mod transaction;
 //todo - draft
 define_zome! {
     entries: [
-        broker::descriptions(),
-        balance::descriptions(),
-        offer::descriptions(),
-        transaction::descriptions()
+        broker::definition(),
+        balance::definition(),
+        offer::definition(),
+        transaction::definition()
     ]
 
     genesis: || {
@@ -41,7 +41,7 @@ define_zome! {
         register_broker: {
             inputs: |name: String|,
             outputs: |result: ZomeApiResult<()>|,
-            handler: broker::handle_creates
+            handler: broker::handle_create
         }
     ]
 
