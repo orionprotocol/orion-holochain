@@ -21,6 +21,8 @@ use hdk::{
     }
 };
 
+pub mod broker;
+pub mod transaction;
 
 //todo - draft
 define_zome! {
