@@ -1,16 +1,15 @@
 #![allow(unused_variables)]
 #![feature(try_from)]
-
 #[macro_use]
 extern crate hdk;
-
 #[macro_use]
 extern crate serde_derive;
-
+extern crate serde_json;
 #[macro_use]
 extern crate holochain_core_types_derive;
+
 use hdk::{
-    error::ZomeApiResult,
+    error::{ZomeApiResult, ZomeApiError},
     holochain_core_types::{
         hash::HashString,
         error::HolochainError,
@@ -24,7 +23,6 @@ use hdk::{
 pub mod broker;
 pub mod transaction;
 
-//todo - draft
 define_zome! {
     entries: [
         broker::definition(),
@@ -40,7 +38,7 @@ define_zome! {
     functions: [
         register_broker: {
             inputs: |name: String|,
-            outputs: |result: ZomeApiResult<()>|,
+            outputs: |result: std::result::Result<(), ZomeApiError>|,
             handler: broker::handle_create
         }
     ]

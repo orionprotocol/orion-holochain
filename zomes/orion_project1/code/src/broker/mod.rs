@@ -35,12 +35,12 @@ pub fn definition() -> ValidatingEntryType {
     )
 }
 
-pub fn handle_create(name: &str, signature: &str) -> ZomeApiResult<Address> {
+pub fn handle_create(name: &str) -> ZomeApiResult<Address> {
     //todo verify signature
     //
     //
 
-    let entry = Entry::App(name);
+    let entry = Entry::App("broker".into(), name.into());
     let address = hdk::commit_entry(&entry)?;
     Ok(address)
 }
