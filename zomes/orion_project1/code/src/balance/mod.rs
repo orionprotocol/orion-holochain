@@ -23,11 +23,10 @@ pub fn definitions() -> ValidatingEntryType {
           Ok(())
       },
 
-      // todo
       links: [
-          to!(
-              "listItem",
-              tag: "items",
+          from!(
+              "broker",
+              tag: "balances",
               validation_package: || hdk::ValidationPackageDefinition::Entry,
               validation: |_validation_data: hdk::LinkValidationData| {
                   Ok(())
