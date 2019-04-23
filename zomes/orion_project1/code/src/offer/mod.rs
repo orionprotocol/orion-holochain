@@ -46,7 +46,17 @@ pub fn definitions() -> ValidatingEntryType {
       // todo
       links: [
           to!(
-              //todo
+              "transaction",
+              tag: "transactions",
+              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation: |_validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
+          ),
+          from!(
+            "broker",
+            tag: "broker"
+
           )
       ]
     ),
@@ -62,4 +72,10 @@ fn handle_create() {
 
 fn handle_accept() {
   unimplemented!()
+}
+
+//status of the most recent transaction
+fn get_status() {
+  unimplemented!()
+
 }

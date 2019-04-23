@@ -6,7 +6,7 @@ use hdk::{
 //todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Transaction {
-    id: i64,
+    id: HashString,
     offer_id: HashString,
     price: f64,
     asset_code: String,
@@ -47,6 +47,11 @@ pub fn definitions() -> ValidatingEntryType {
             }
 
         },
-        links: []
+        links: [
+            from!(
+                "offer",
+                tag: "offer"
+            ),
+        ]
     )
 }

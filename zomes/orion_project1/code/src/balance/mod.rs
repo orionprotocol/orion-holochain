@@ -26,7 +26,7 @@ pub fn definitions() -> ValidatingEntryType {
       links: [
           from!(
               "broker",
-              tag: "balances",
+              tag: "broker",
               validation_package: || hdk::ValidationPackageDefinition::Entry,
               validation: |_validation_data: hdk::LinkValidationData| {
                   Ok(())
