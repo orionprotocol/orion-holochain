@@ -22,7 +22,6 @@ pub fn definitions() -> ValidatingEntryType {
           Ok(())
       },
 
-      // todo
       links: [
           to!(
               "balance",
@@ -33,8 +32,7 @@ pub fn definitions() -> ValidatingEntryType {
               }
           )
       ]
-    ),
-
+    )
 }
 
 pub fn handle_create(name: &str, signature: &str) -> ZomeApiResult<Address> {

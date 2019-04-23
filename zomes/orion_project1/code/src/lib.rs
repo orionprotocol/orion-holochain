@@ -25,11 +25,10 @@ use hdk::{
 //todo - draft
 define_zome! {
     entries: [
-        main_agent::descriptions(),
         broker::descriptions(),
         balance::descriptions(),
         offer::descriptions(),
-        transaction::descriptions(),
+        transaction::descriptions()
     ]
 
     genesis: || {
@@ -38,11 +37,12 @@ define_zome! {
 
     functions: [
         register_broker: {
-            inputs:
-            outputs:
-            handler: handle_create_broker
+            inputs: |name: String|,
+            outputs: |result: ZomeApiResult<()>|,
+            handler: broker::handle_creates
         }
     ]
+
     traits: {
         hc_public [register_broker]
     }

@@ -43,7 +43,6 @@ pub fn definitions() -> ValidatingEntryType {
           Ok(())
       },
 
-      // todo
       links: [
           to!(
               "transaction",
@@ -59,7 +58,7 @@ pub fn definitions() -> ValidatingEntryType {
 
           )
       ]
-    ),
+    )
 }
 
 fn calculate_total_price(ofr: Offer) -> f64 {

@@ -45,8 +45,8 @@ pub fn definitions() -> ValidatingEntryType {
                    Ok(())
                 }
             }
-
         },
+
         links: [
             from!(
                 "offer",

@@ -33,9 +33,9 @@ pub fn definitions() -> ValidatingEntryType {
               }
           )
       ]
-    ),
-
+    )
 }
+
 fn handle_update() {
   unimplemented!()
 }
