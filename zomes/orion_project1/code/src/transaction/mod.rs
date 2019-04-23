@@ -22,11 +22,12 @@ enum Status {
     PartiallyCancelled
 }
 
-pub fn definitions() -> ValidatingEntryType{
+pub fn definitions() -> ValidatingEntryType {
     entry!(
         name: "transaction",
-        description: "transaction or trade",
+        description: "also called 'trade'",
         sharing: Sharing::Public,
+        native_type: Transaction,
         validation_package: || {
             hdk::ValidationPackageDefinition::Entry
         },

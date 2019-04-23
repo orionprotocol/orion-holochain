@@ -32,14 +32,34 @@ enum Direction {
     Sell
 }
 
+pub fn definitions() -> ValidatingEntryType {
+    entry!(
+      name: "offer",
+      description: "also called 'order'",
+      sharing: Sharing::Public,
+      native_type: Offer,
+      validation_package: || hdk::ValidationPackageDefinition::Entry,
+      validation: |validation_data: hdk::EntryValidationData| {
+          Ok(())
+      },
+
+      // todo
+      links: [
+          to!(
+              //todo
+          )
+      ]
+    ),
+}
+
 fn calculate_total_price(ofr: Offer) -> f64 {
     ofr.quantity * ofr.quoted_price_per_unit
 }
 
-fn create() {
+fn handle_create() {
   unimplemented!()
 }
 
-fn accept() {
+fn handle_accept() {
   unimplemented!()
 }

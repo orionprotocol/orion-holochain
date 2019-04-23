@@ -11,7 +11,33 @@ struct Broker {
     signed_pubkey: String
 }
 
-pub fn create(name: &str, signature: &str) -> ZomeApiResult<Address> {
+pub fn definitions() -> ValidatingEntryType {
+    entry!(
+      name: "broker",
+      description: "a middle man between a user and an exchange",
+      sharing: Sharing::Public,
+      native_type: Broker,
+      validation_package: || hdk::ValidationPackageDefinition::Entry,
+      validation: |validation_data: hdk::EntryValidationData| {
+          Ok(())
+      },
+
+      // todo
+      links: [
+          to!(
+              "listItem",
+              tag: "items",
+              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation: |_validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
+          )
+      ]
+    ),
+
+}
+
+pub fn handle_create(name: &str, signature: &str) -> ZomeApiResult<Address> {
     //todo verify signature
     //
     //

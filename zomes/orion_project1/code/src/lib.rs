@@ -25,49 +25,11 @@ use hdk::{
 //todo - draft
 define_zome! {
     entries: [
-        entry!(
-            name: "broker",
-            description: "a middle man between a user and an exchange",
-            sharing: Sharing::Public,
-            validation_package: || hdk::ValidationPackageDefinition::Entry,
-            validation: |validation_data: hdk::EntryValidationData| {
-                Ok(())
-            },
-
-
-
-            links: [
-                to!(
-                    "listItem",
-                    tag: "items",
-                    validation_package: || hdk::ValidationPackageDefinition::Entry,
-                    validation: |_validation_data: hdk::LinkValidationData| {
-                        Ok(())
-                    }
-                )
-            ]
-        ),
-
-        entry!(
-            name: "order", //todo: rename to 'offer'?
-            description: "",
-            sharing: Sharing::Public,
-            validation_package: || hdk::ValidationPackageDefinition::Entry,
-            validation: |validation_data: hdk::EntryValidationData| {
-                Ok(())
-            }
-        ),
-
-        entry!(
-            name: "trade", //todo: rename to 'transaction'?
-            description: "",
-            sharing: Sharing::Public,
-            validation_package: || hdk::ValidationPackageDefinition::Entry,
-            validation: |validation_data: hdk::EntryValidationData| {
-                Ok(())
-            }
-        )
-
+        main_agent::descriptions(),
+        broker::descriptions(),
+        balance::descriptions(),
+        offer::descriptions(),
+        transaction::descriptions(),
     ]
 
     genesis: || {
@@ -75,57 +37,13 @@ define_zome! {
     }
 
     functions: [
-
-        /*
-        create_list: {
-            inputs: |list: List|,
-            outputs: |result: ZomeApiResult<Address>|,
-            handler: handle_create_list
-        }
-        add_item: {
-            inputs: |list_item: ListItem, list_addr: HashString|,
-            outputs: |result: ZomeApiResult<Address>|,
-            handler: handle_add_item
-        }
-        get_list: {
-            inputs: |list_addr: HashString|,
-            outputs: |result: ZomeApiResult<GetListResponse>|,
-            handler: handle_get_list
-        }
-        */
-
         register_broker: {
             inputs:
             outputs:
-            handler: register_broker
+            handler: handle_create_broker
         }
-
-        update_balance: {
-            inputs:
-            outputs:
-            handler: update_balance
-        }
-
-        init_order: {
-            inputs:
-            outputs:
-            handler: 
-        }
-
-        accept_order_tx: { 
-            inputs:
-            outputs:
-            handler: 
-        }
-
-        trade_tx: { 
-            inputs:
-            outputs:
-            handler: trades            
-        }
-
     ]
     traits: {
-        hc_public [register_broker, update_balance, init_order, accept_order_tx, trade_tx]
+        hc_public [register_broker]
     }
 }

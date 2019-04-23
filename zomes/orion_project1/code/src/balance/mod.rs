@@ -12,6 +12,31 @@ struct Balance {
     updated_at: i64
 }
 
-fn update() {
+pub fn definitions() -> ValidatingEntryType {
+    entry!(
+      name: "balance",
+      description: "",
+      sharing: Sharing::Public,
+      native_type: Balance,
+      validation_package: || hdk::ValidationPackageDefinition::Entry,
+      validation: |validation_data: hdk::EntryValidationData| {
+          Ok(())
+      },
+
+      // todo
+      links: [
+          to!(
+              "listItem",
+              tag: "items",
+              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation: |_validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
+          )
+      ]
+    ),
+
+}
+fn handle_update() {
   unimplemented!()
 }
