@@ -12,8 +12,7 @@ use hdk::holochain_core_types::{
     hash::HashString,
 };
 
-struct Offer {
-    id: HashString, //needed?
+struct Order {
     exchange_id: i64,
     broker_id: HashString,
     base_asset_code: String,
@@ -34,10 +33,10 @@ enum Direction {
 
 pub fn definition() -> ValidatingEntryType {
     entry!(
-      name: "offer",
-      description: "also called 'order'",
+      name: "order",
+      description: "",
       sharing: Sharing::Public,
-      native_type: Offer,
+      native_type: Order,
       validation_package: || hdk::ValidationPackageDefinition::Entry,
       validation: |validation_data: hdk::EntryValidationData| {
           Ok(())
@@ -66,8 +65,8 @@ fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
 }
 
 
-fn calculate_total_price(ofr: Offer) -> f64 {
-    ofr.quantity * ofr.quoted_price_per_unit
+fn calculate_total_price(ord: Order) -> f64 {
+    ord.quantity * ord.quoted_price_per_unit
 }
 
 fn handle_create() {

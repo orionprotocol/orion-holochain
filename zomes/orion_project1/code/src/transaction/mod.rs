@@ -8,8 +8,7 @@ use holochain_core_types_derive::DefaultJson;
 //todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Transaction {
-    id: HashString, //needed?
-    offer_id: HashString,
+    order_addr: HashString,
     price: f64,
     asset_code: String,
     status: Status,
@@ -52,8 +51,8 @@ pub fn definition() -> ValidatingEntryType {
 
         links: [
             from!(
-                "offer",
-                tag: "offer"
+                "order",
+                tag: "order"
             ),
         ]
     )

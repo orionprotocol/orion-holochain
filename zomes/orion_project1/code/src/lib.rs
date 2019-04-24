@@ -27,7 +27,7 @@ define_zome! {
     entries: [
         broker::definition(),
         balance::definition(),
-        offer::definition(),
+        order::definition(),
         transaction::definition()
     ]
 
@@ -42,22 +42,23 @@ define_zome! {
             handler: broker::handle_create
         }
 
-        initialize_offer: {
+        initialize_order: {
             inputs: |/*todo*/|,
             outputs: |result: std::result::Result<(), ZomeApiError>|,
-            handler: offer::handle_create
+            handler: ofder::handle_create
         }
 
-        approve_offer: {
+        approve_order: {
             inputs: |addr: HashString|,
             outputs: |result: std::result::Result<(), ZomeApiError>|,
-            handler: offer::handle_approve
+            handler: order::handle_approve
         }
 
+        //transaction is also called 'trade'
         create_transaction: {
             inputs: |/*todo*/|,
             outputs: |result: std::result::Result<(), ZomeApiError>|,
-            handler: offer::transaction_create
+            handler: transaction::handle_create
         }
     ]
 
