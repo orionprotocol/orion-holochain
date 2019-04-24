@@ -13,7 +13,7 @@ use hdk::holochain_core_types::{
 };
 
 struct Offer {
-    id: HashString,
+    id: HashString, //needed?
     exchange_id: i64,
     broker_id: HashString,
     base_asset_code: String,
@@ -79,7 +79,7 @@ fn handle_accept() {
 }
 
 //status of the most recent transaction
-fn get_status() {
+fn get_status(addr: Address) {
   unimplemented!()
 
 }

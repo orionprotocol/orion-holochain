@@ -8,7 +8,7 @@ use holochain_core_types_derive::DefaultJson;
 //todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Transaction {
-    id: HashString,
+    id: HashString, //needed?
     offer_id: HashString,
     price: f64,
     asset_code: String,

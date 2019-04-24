@@ -4,7 +4,7 @@ use hdk::{
 };
 
 struct Balance {
-    id: HashString,
+    id: HashString, //needed?
     asset_code: String,
     amount: i64,
     broker_id: HashString,
@@ -45,17 +45,8 @@ pub fn handle_update() {
 //create new balance
 // todo - needed? merge with 'handle_update'?
 pub fn hande_create(blc: Balance, broker_addr: HashString) -> ZomeApiResult<Address> {
-
-    // todo
-    // hdk::link_entries(
-    //         &AGENT_ADDRESS,
-    //         &addr,
-    //         "balances",
-    //     )?;
-
-
     let blc_entry = Entry::App("balance".into(), blc.into());
     let blc_addr = hdk::commit_entry(&blc_entry)?;
-    hdk::link_entries(&broker_addr, &blc_addr, "balances")?; // if successful, link to list address
+    hdk::link_entries(&broker_addr, &blc_addr, "balances")?;
     Ok(blc_addr)
 }

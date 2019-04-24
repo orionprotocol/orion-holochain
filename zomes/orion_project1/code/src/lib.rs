@@ -36,10 +36,28 @@ define_zome! {
     }
 
     functions: [
-        register_broker: {
+        create_broker: {
             inputs: |name: String|,
             outputs: |result: std::result::Result<(), ZomeApiError>|,
             handler: broker::handle_create
+        }
+
+        initialize_offer: {
+            inputs: |/*todo*/|,
+            outputs: |result: std::result::Result<(), ZomeApiError>|,
+            handler: offer::handle_create
+        }
+
+        approve_offer: {
+            inputs: |addr: HashString|,
+            outputs: |result: std::result::Result<(), ZomeApiError>|,
+            handler: offer::handle_approve
+        }
+
+        create_transaction: {
+            inputs: |/*todo*/|,
+            outputs: |result: std::result::Result<(), ZomeApiError>|,
+            handler: offer::transaction_create
         }
     ]
 
