@@ -13,8 +13,8 @@ use hdk::holochain_core_types::{
 };
 
 struct Order {
-    exchange_id: i64,
-    broker_id: HashString,
+    exchange_addr: HashString,
+    broker_addr: HashString,
     base_asset_code: String,
     quoted_asset_code: String,
     direction: Direction,

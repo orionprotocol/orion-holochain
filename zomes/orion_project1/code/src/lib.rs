@@ -38,13 +38,13 @@ define_zome! {
     functions: [
         create_broker: {
             inputs: |name: String|,
-            outputs: |result: std::result::Result<(), ZomeApiError>|,
+            outputs: |result: std::result::Result<Address, ZomeApiError>|,
             handler: broker::handle_create
         }
 
         initialize_order: {
             inputs: |/*todo*/|,
-            outputs: |result: std::result::Result<(), ZomeApiError>|,
+            outputs: |result: std::result::Result<Address, ZomeApiError>|,
             handler: ofder::handle_create
         }
 
@@ -57,7 +57,7 @@ define_zome! {
         //transaction is also called 'trade'
         create_transaction: {
             inputs: |/*todo*/|,
-            outputs: |result: std::result::Result<(), ZomeApiError>|,
+            outputs: |result: std::result::Result<Address, ZomeApiError>|,
             handler: transaction::handle_create
         }
     ]
