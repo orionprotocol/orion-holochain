@@ -61,6 +61,11 @@ pub fn definition() -> ValidatingEntryType {
     )
 }
 
+fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
+    hdk::get_entry(&addr)
+}
+
+
 fn calculate_total_price(ofr: Offer) -> f64 {
     ofr.quantity * ofr.quoted_price_per_unit
 }
