@@ -13,8 +13,7 @@
     "BasedOn": {
         "H": null
     },
-    "Zomes": [
-        {
+    "Zomes": [{
             "Name": "consumeHolodex",
             "Description": "Main application zome",
             "RibosomeType": "js",
