@@ -1,0 +1,10 @@
+[[agents]]
+id = "orion agent"
+name = "Orion object1"
+public_address = "Main Orion agent1--------------TODO--------TODO------TODO"
+keystore_file = "orion_object1.key"
+
+[[dnas]]
+id = "orion_project1_dna"
+file = "orion_project1.dna.json"
+hash = "Abcd123456$#.$"
