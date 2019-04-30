@@ -24,6 +24,37 @@ enum Status {
     PartiallyCancelled
 }
 
+impl Transaction {
+    fn new(order_addr: HashString, price: f64, asset_code: &str) -> Self {
+        // todo - check if 'order' exists
+        // todo - check price less or equal to the price of 'order'
+        // todo - check asset_code
+
+
+        // todo - extract
+        let source_order_raw = hdk::get_entry(&order_addr)?;
+        if let Some(Entry::App(_, json_str)) = source_order_raw {
+            let ts = SystemTime::now().duration_since(UNIX_EPOCH);
+            if price > json_str["price"] {
+                //todo
+            }
+
+
+            Transaction {
+                order_addr: order_addr,
+                price: price,
+                asset_code: asset_code,
+                status: Status::New, //todo
+                inserted_at: ts
+            }
+        } else {
+            //todo
+        }
+
+    }
+}
+
+
 pub fn definition() -> ValidatingEntryType {
     entry!(
         name: "transaction",

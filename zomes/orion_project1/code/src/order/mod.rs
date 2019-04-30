@@ -13,8 +13,8 @@ use hdk::holochain_core_types::{
 };
 
 struct Order {
-    exchange_addr: HashString,
-    broker_addr: HashString,
+    exchange_id: HashString,
+    broker_id: HashString,
     base_asset_code: String,
     quoted_asset_code: String,
     direction: Direction,
@@ -60,6 +60,24 @@ pub fn definition() -> ValidatingEntryType {
     )
 }
 
+impl Order {
+  fn new() -> Self {
+    Order{
+      exchange_id: HashString,
+      broker_id: HashString,
+      base_asset_code: String,
+      quoted_asset_code: String,
+      direction: Direction,
+      quoted_price_per_unit: f64,
+      quantity: f64,
+
+      inserted_at: /*todo - now()*/
+    }
+  }
+}
+
+
+
 fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
     hdk::get_entry(&addr)
 }
@@ -70,6 +88,7 @@ fn calculate_total_price(ord: Order) -> f64 {
 }
 
 fn handle_create() {
+
   unimplemented!()
 }
 

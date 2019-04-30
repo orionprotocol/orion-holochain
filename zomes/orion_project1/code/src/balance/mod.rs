@@ -4,10 +4,9 @@ use hdk::{
 };
 
 struct Balance {
-    id: HashString, //needed?
     asset_code: String,
     amount: i64,
-    broker_id: HashString,
+    broker_addr: HashString,
     inserted_at: i64,
     updated_at: i64
 }

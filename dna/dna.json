@@ -1,8 +1,8 @@
 {
-    "Version": 1,
-    "UUID": "c879ef7f-4e6b-4325-8373-29707db75418",
-    "Name": "orionProject1",
-    "Properties": {
+    "version": 1,
+    "uuid": "c879ef7f-4e6b-4325-8373-29707db75418",
+    "name": "orionProject1",
+    "properties": {
         "description": "Orion Example application",
         "language": "en"
     },

@@ -22,8 +22,8 @@ fn sign(data: &str) -> Result<String, error::Error> {
 }
 
 fn verify_signature(signature: &str) -> bool {
-  let kp = get_key_pair();
-  let mut verifier = Verifier::new(MessageDigest::sha256(), &kp)?;
-  verifier.update(data.as_bytes())?;
-  verifier.verify(&signature).unwrap()
+    let kp = get_key_pair();
+    let mut verifier = Verifier::new(MessageDigest::sha256(), &kp)?;
+    verifier.update(signature.as_bytes())?;
+    verifier.verify(&signature).unwrap()
 }

@@ -1,3 +1,4 @@
+use hdk::entry_definition::ValidatingEntryType;
 use hdk::{
     error::ZomeApiResult,
 };
@@ -6,7 +7,6 @@ use hdk::holochain_core_types::{
 };
 
 struct Broker {
-    id: HashString, //needed?
     name: String,
     signed_pubkey: String
 }
@@ -53,21 +53,21 @@ pub fn definition() -> ValidatingEntryType {
     )
 }
 
-pub fn handle_create(brk: Broker) -> ZomeApiResult<Address> {
+pub fn handle_create(name: &str) -> ZomeApiResult<Address> {
     //todo verify signature
     //
     //
-
+    let brk = Broker {name: name};
     let entry = Entry::App("broker".into(), brk.into());
     let address = hdk::commit_entry(&entry)?;
     Ok(address)
 }
 
-pub fn get(address: Address) -> ZomeApiResult<Option<Entry>> {
+pub fn get(addr: Address) -> ZomeApiResult<Option<Entry>> {
     hdk::get_entry(&address)
 }
 
-fn trade() {
+fn trade(balance_addr: HashString, order_addr: HashString, ) {
   unimplemented!()
 }
 
