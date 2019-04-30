@@ -30,6 +30,24 @@ pub fn definition() -> ValidatingEntryType {
               validation: |_validation_data: hdk::LinkValidationData| {
                   Ok(())
               }
+          ),
+
+          to!(
+              "order",
+              tag: "open_orders",
+              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation: |_validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
+          )
+
+          to!(
+              "order",
+              tag: "closed_orders",
+              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation: |_validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
           )
       ]
     )

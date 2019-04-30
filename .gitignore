@@ -1,2 +1,4 @@
 .DS_Store
 target/
+
+# todo - include 'keys/rsa_private.pem' when in the production
