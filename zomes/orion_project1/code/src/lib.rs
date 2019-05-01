@@ -24,6 +24,9 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 pub mod broker;
 pub mod trade;
+pub mod order;
+pub mod balance;
+
 
 define_zome! {
     entries: [
@@ -47,7 +50,7 @@ define_zome! {
         initialize_order: {
             inputs: |/*todo*/|,
             outputs: |result: std::result::Result<Address, ZomeApiError>|,
-            handler: ofder::handle_create
+            handler: order::handle_create
         }
 
         approve_order: {

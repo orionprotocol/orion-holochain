@@ -3,7 +3,6 @@ use hdk::{
     entry_definition::ValidatingEntryType,
     error::ZomeApiResult
 };
-
 use hdk::holochain_core_types::{
     cas::content::Address,
     entry::Entry,
@@ -11,6 +10,7 @@ use hdk::holochain_core_types::{
     json::{JsonString,RawString},
     hash::HashString,
 };
+
 
 struct Order {
     exchange_addr: HashString,
@@ -61,36 +61,40 @@ pub fn definition() -> ValidatingEntryType {
 }
 
 impl Order {
-  fn new() -> Self {
-    Order{
-      exchange_id: HashString,
-      broker_id: HashString,
-      base_asset_code: String,
-      quoted_asset_code: String,
-      direction: Direction,
-      quoted_price_per_unit: f64,
-      quantity: f64,
 
-      inserted_at: /*todo - now()*/
-    }
+  // todo
+  fn new() -> Self {
+    unimplemented!()
+    // Order{
+    //   exchange_addr: HashString,
+    //   broker_addr: HashString,
+    //   base_asset_code: String,
+    //   quoted_asset_code: String,
+    //   direction: Direction,
+    //   quoted_price_per_unit: f64,
+    //   quantity: f64,
+
+    //   /*todo - now()*/
+    //   inserted_at: -1
+    // }
   }
+
+    fn calculate_total_price(self) -> f64 {
+        self.amount * self.quoted_price_per_unit
+    }
 }
 
 
 
-fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
+pub fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
     hdk::get_entry(&addr)
 }
 
-fn calculate_total_price(ord: Order) -> f64 {
-    ord.quantity * ord.quoted_price_per_unit
+pub fn handle_approve(addr: Address) -> ZomeApiResult<Option<Entry>> {
+    hdk::get_entry(&addr)
 }
 
-fn handle_create() {
-    unimplemented!()
-}
-
-fn handle_accept() {
+pub fn handle_create() {
     unimplemented!()
 }
 
