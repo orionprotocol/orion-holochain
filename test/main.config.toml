@@ -1,8 +1,15 @@
 [[agents]]
-id = "orion agent"
-name = "Orion object1"
+id = "orion_agent1"
+name = "Orion agen2"
 public_address = "Main Orion agent1--------------TODO--------TODO------TODO"
 keystore_file = "orion_object1.key"
+
+[[agents]]
+id = "orion_agent2"
+name = "Orion agent 2"
+public_address = "Main Orion agent2--------------TODO--------TODO------TODO"
+keystore_file = "orion_object2.key"
+
 
 [[dnas]]
 id = "orion_project1_dna"
