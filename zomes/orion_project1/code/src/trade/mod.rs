@@ -2,10 +2,18 @@ use hdk::{
     self,
     entry_definition::ValidatingEntryType,
 };
-
 use holochain_core_types_derive::DefaultJson;
+use hdk::holochain_core_types::{
+    cas::content::Address,
+    entry::Entry,
+    dna::entry_types::Sharing,
+    error::HolochainError,
+    json::JsonString,
+    hash::HashString,
+    validation::EntryValidationData
+};
+use std::time::{SystemTime, UNIX_EPOCH};
 
-//todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 pub struct Trade {
     order_addr: HashString,
@@ -89,4 +97,8 @@ pub fn definition() -> ValidatingEntryType {
             ),
         ]
     )
+}
+
+pub fn handle_create() {
+    unimplemented!()
 }

@@ -82,18 +82,16 @@ fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
     hdk::get_entry(&addr)
 }
 
-
 fn calculate_total_price(ord: Order) -> f64 {
     ord.quantity * ord.quoted_price_per_unit
 }
 
 fn handle_create() {
-
-  unimplemented!()
+    unimplemented!()
 }
 
 fn handle_accept() {
-  unimplemented!()
+    unimplemented!()
 }
 
 //status of the most recent trade
