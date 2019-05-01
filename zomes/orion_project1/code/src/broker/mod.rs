@@ -7,8 +7,7 @@ use hdk::holochain_core_types::{
 };
 
 struct Broker {
-    name: String,
-    signed_pubkey: String
+    name: String
 }
 
 pub fn definition() -> ValidatingEntryType {
@@ -64,13 +63,10 @@ pub fn definition() -> ValidatingEntryType {
 }
 
 pub fn handle_create(name: &str) -> ZomeApiResult<Address> {
-    //todo verify signature
-    //
-    //
-    let brk = Broker {name: name};
+    let brk = Broker{name: name};
     let entry = Entry::App("broker".into(), brk.into());
-    let address = hdk::commit_entry(&entry)?;
-    Ok(address)
+    let new_addr = hdk::commit_entry(&entry)?;
+    Ok(new_addr)
 }
 
 pub fn get(addr: Address) -> ZomeApiResult<Option<Entry>> {
