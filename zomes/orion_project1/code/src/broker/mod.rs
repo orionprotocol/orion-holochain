@@ -23,6 +23,16 @@ pub fn definition() -> ValidatingEntryType {
       },
 
       links: [
+          //todo: not "from!" ?
+          to!(
+              "%agent_id",
+              tag: "owner",
+              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation:  | _validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
+          ),
+
           to!(
               "balance",
               tag: "balances",
