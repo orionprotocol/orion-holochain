@@ -96,7 +96,7 @@ fn handle_accept() {
   unimplemented!()
 }
 
-//status of the most recent transaction
+//status of the most recent trade
 fn get_status(addr: Address) {
   unimplemented!()
 

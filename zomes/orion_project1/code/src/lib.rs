@@ -23,14 +23,14 @@ use hdk::{
 use std::time::{SystemTime, UNIX_EPOCH};
 
 pub mod broker;
-pub mod transaction;
+pub mod trade;
 
 define_zome! {
     entries: [
         broker::definition(),
         balance::definition(),
         order::definition(),
-        transaction::definition()
+        trade::definition()
     ]
 
     genesis: || {
@@ -56,11 +56,10 @@ define_zome! {
             handler: order::handle_approve
         }
 
-        //transaction is also called 'trade'
-        create_transaction: {
+        create_trade: {
             inputs: |/*todo*/|,
             outputs: |result: std::result::Result<Address, ZomeApiError>|,
-            handler: transaction::handle_create
+            handler: trade::handle_create
         }
     ]
 
@@ -69,7 +68,7 @@ define_zome! {
             register_broker,
             initialize_order,
             approve_order,
-            create_transaction
+            create_trade
         ]
     }
 }

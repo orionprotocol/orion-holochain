@@ -35,7 +35,7 @@
                     "SchemaFile": "gameBoardSchema.json",
                     "Sharing": "public"
                 }, {
-                    "Name": "transaction",
+                    "Name": "trade",
                     "DataFormat": "links",
                     "Sharing": "public"
                 }

@@ -7,7 +7,7 @@ use holochain_core_types_derive::DefaultJson;
 
 //todo: or Trade
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
-pub struct Transaction {
+pub struct Trade {
     order_addr: HashString,
     price: f64,
     asset_code: String,
@@ -24,7 +24,7 @@ enum Status {
     PartiallyCancelled
 }
 
-impl Transaction {
+impl Trade {
     fn new(order_addr: HashString, price: f64, asset_code: &str) -> Self {
         // todo - check if 'order' exists
         // todo - check price less or equal to the price of 'order'
@@ -42,7 +42,7 @@ impl Transaction {
             }
 
 
-            Transaction {
+            Trade {
                 order_addr: order_addr,
                 price: price,
                 asset_code: asset_code,
@@ -59,10 +59,10 @@ impl Transaction {
 
 pub fn definition() -> ValidatingEntryType {
     entry!(
-        name: "transaction",
-        description: "also called 'trade'",
+        name: "trade",
+        description: "trade or transaction",
         sharing: Sharing::Public,
-        native_type: Transaction,
+        native_type: Trade,
         validation_package: || {
             hdk::ValidationPackageDefinition::Entry
         },

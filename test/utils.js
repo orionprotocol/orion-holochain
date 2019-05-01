@@ -18,9 +18,9 @@ const createOrder = function(exchangeAddress, brokerAddress, baseAssetCode, quot
     });
 };
 
-const createTransaction = function(orderAddress, price, assetCode) {
+const createTrade = function(orderAddress, price, assetCode) {
   return async caller =>
-    await caller.callSync("vc", "create_transaction", {
+    await caller.callSync("vc", "create_trade", {
       order_addr: orderAddress,
       price: assetAmount,
       assetCode: message
