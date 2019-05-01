@@ -53,12 +53,13 @@ impl Trade {
             Trade {
                 order_addr: order_addr,
                 price: price,
-                asset_code: asset_code,
+                asset_code: asset_code.into(),
                 status: Status::New, //todo
                 inserted_at: ts
             }
         } else {
             //todo
+            unimplemented!()
         }
 
     }
