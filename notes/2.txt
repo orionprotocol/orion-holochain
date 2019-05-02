@@ -13,3 +13,12 @@ pub fn verify_message(message: String, provenance: Provenance) -> ZomeApiResult<
     hdk::verify_signature(provenance, message)
 }
 
+
+
+
+//trade
+            // todo
+            if price > json_str["price"] {
+                //todo
+            }
+

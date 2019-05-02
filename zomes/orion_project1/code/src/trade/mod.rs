@@ -42,13 +42,8 @@ impl Trade {
         // todo - extract
         let source_order_raw = hdk::get_entry(&order_addr)?;
         if let Some(Entry::App(_, json_str)) = source_order_raw {
-            let ts = SystemTime::now().duration_since(UNIX_EPOCH);
-
-            // todo
-            if price > json_str["price"] {
-                //todo
-            }
-
+            // todo: for simplicity
+            Some(ts) = SystemTime::now().duration_since(UNIX_EPOCH);
 
             Trade {
                 order_addr: order_addr,
