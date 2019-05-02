@@ -2,6 +2,14 @@ use hdk::{
     self,
     entry_definition::ValidatingEntryType,
 };
+use hdk::error::ZomeApiResult;
+use hdk::holochain_core_types::{
+    cas::content::Address,
+    entry::Entry,
+    error::HolochainError,
+    json::{JsonString,RawString},
+    hash::HashString,
+};
 
 struct Balance {
     asset_code: String,
@@ -16,7 +24,11 @@ pub fn definition() -> ValidatingEntryType {
       name: "balance",
       description: "",
       sharing: Sharing::Public,
-      native_type: Balance,
+
+      // todo
+      // ^^^^^^^^^^^ no rules expected this token in macro call
+      // native_type: Balance,
+
       validation_package: || hdk::ValidationPackageDefinition::Entry,
       validation: |validation_data: hdk::EntryValidationData| {
           Ok(())

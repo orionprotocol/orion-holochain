@@ -20,7 +20,7 @@ pub struct Trade {
     price: f64,
     asset_code: String,
     status: Status,
-    inserted_at: i64
+    inserted_at: u64
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
@@ -43,7 +43,7 @@ impl Trade {
         let source_order_raw = hdk::get_entry(&order_addr)?;
         if let Some(Entry::App(_, json_str)) = source_order_raw {
             // todo: for simplicity
-            Some(ts) = SystemTime::now().duration_since(UNIX_EPOCH);
+            let ts = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
 
             Trade {
                 order_addr: order_addr,
@@ -66,7 +66,6 @@ pub fn definition() -> ValidatingEntryType {
         name: "trade",
         description: "trade or transaction",
         sharing: Sharing::Public,
-        native_type: Trade,
         validation_package: || {
             hdk::ValidationPackageDefinition::Entry
         },

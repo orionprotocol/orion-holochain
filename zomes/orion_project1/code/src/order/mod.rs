@@ -18,12 +18,9 @@ struct Order {
     base_asset_code: String,
     quoted_asset_code: String,
     direction: Direction,
-
-    //todo: these may be replaced with 'decimal' if needed
     quoted_price_per_unit: f64,
     amount: f64,
-
-    inserted_at: i64
+    inserted_at: u64
 }
 
 enum Direction {
@@ -36,7 +33,6 @@ pub fn definition() -> ValidatingEntryType {
       name: "order",
       description: "",
       sharing: Sharing::Public,
-      native_type: Order,
       validation_package: || hdk::ValidationPackageDefinition::Entry,
       validation: |validation_data: hdk::EntryValidationData| {
           Ok(())

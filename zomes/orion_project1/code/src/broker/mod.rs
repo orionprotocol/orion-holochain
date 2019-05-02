@@ -20,7 +20,6 @@ pub fn definition() -> ValidatingEntryType {
       name: "broker",
       description: "a middle man between a user and an exchange",
       sharing: Sharing::Public,
-      native_type: Broker,
       validation_package: || hdk::ValidationPackageDefinition::Entry,
       validation: |validation_data: hdk::EntryValidationData| {
           Ok(())
