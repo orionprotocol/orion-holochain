@@ -33,7 +33,40 @@ enum Direction {
 }
 
 pub fn definition() -> ValidatingEntryType {
-    unimplemented!()
+    entry!(
+      name: "order",
+      description: "",
+      sharing: Sharing::Public,
+      validation_package: || {
+        hdk::ValidationPackageDefinition::Entry
+      },
+      validation: |validation_data: hdk::EntryValidationData<Order>| {
+          Ok(())
+      },
+
+      links: [
+          to!(
+              "transaction",
+              tag: "transactions",
+              validation_package: || {
+                  hdk::ValidationPackageDefinition::Entry
+              },
+              validation: |_validation_data: hdk::LinkValidationData| {
+                  Ok(())
+              }
+          ),
+          from!(
+            "broker",
+            tag: "broker",
+            validation_package: || {
+                hdk::ValidationPackageDefinition::Entry
+            },
+            validation: |_validation_data: hdk::LinkValidationData| {
+                Ok(())
+            }
+          )
+      ]
+    )
 }
 
 impl Order {
