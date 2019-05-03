@@ -9,9 +9,10 @@ use hdk::holochain_core_types::{
     error::HolochainError,
     json::{JsonString,RawString},
     hash::HashString,
+    dna::entry_types::Sharing
+
 };
-
-
+#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 struct Order {
     exchange_addr: HashString,
     broker_addr: HashString,
@@ -23,6 +24,7 @@ struct Order {
     inserted_at: u64
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 enum Direction {
     Buy,
     Sell
@@ -33,8 +35,10 @@ pub fn definition() -> ValidatingEntryType {
       name: "order",
       description: "",
       sharing: Sharing::Public,
-      validation_package: || hdk::ValidationPackageDefinition::Entry,
-      validation: |validation_data: hdk::EntryValidationData| {
+      validation_package: || {
+        hdk::ValidationPackageDefinition::Entry
+      },
+      validation: |validation_data: hdk::EntryValidationData<Order>| {
           Ok(())
       },
 
@@ -42,15 +46,22 @@ pub fn definition() -> ValidatingEntryType {
           to!(
               "transaction",
               tag: "transactions",
-              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation_package: || {
+                  hdk::ValidationPackageDefinition::Entry
+              },
               validation: |_validation_data: hdk::LinkValidationData| {
                   Ok(())
               }
           ),
           from!(
             "broker",
-            tag: "broker"
-
+            tag: "broker",
+            validation_package: || {
+                hdk::ValidationPackageDefinition::Entry
+            },
+            validation: |_validation_data: hdk::LinkValidationData| {
+                Ok(())
+            }
           )
       ]
     )
@@ -86,8 +97,10 @@ pub fn handle_get(addr: Address) -> ZomeApiResult<Option<Entry>> {
     hdk::get_entry(&addr)
 }
 
+// todo
 pub fn handle_approve(addr: Address) -> ZomeApiResult<Option<Entry>> {
-    hdk::get_entry(&addr)
+    hdk::get_entry(&addr);
+    unimplemented!()
 }
 
 pub fn handle_create() {

@@ -9,8 +9,10 @@ use hdk::holochain_core_types::{
     error::HolochainError,
     json::{JsonString,RawString},
     hash::HashString,
+    dna::entry_types::Sharing
 };
 
+#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 struct Balance {
     asset_code: String,
     amount: i64,
@@ -29,8 +31,10 @@ pub fn definition() -> ValidatingEntryType {
       // ^^^^^^^^^^^ no rules expected this token in macro call
       // native_type: Balance,
 
-      validation_package: || hdk::ValidationPackageDefinition::Entry,
-      validation: |validation_data: hdk::EntryValidationData| {
+      validation_package: || {
+        hdk::ValidationPackageDefinition::Entry
+      },
+      validation: |validation_data: hdk::EntryValidationData<Balance>| {
           Ok(())
       },
 

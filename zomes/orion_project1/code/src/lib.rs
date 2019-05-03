@@ -8,20 +8,6 @@ extern crate serde_json;
 #[macro_use]
 extern crate holochain_core_types_derive;
 
-use hdk::{
-    error::{ZomeApiResult, ZomeApiError},
-    holochain_core_types::{
-        hash::HashString,
-        error::HolochainError,
-        dna::entry_types::Sharing,
-        json::JsonString,
-        cas::content::Address,
-        entry::Entry,
-    }
-};
-
-use std::time::{SystemTime, UNIX_EPOCH};
-
 pub mod broker;
 pub mod trade;
 pub mod order;
@@ -31,9 +17,9 @@ pub mod balance;
 define_zome! {
     entries: [
         broker::definition(),
-        balance::definition(),
-        order::definition(),
-        trade::definition()
+        // balance::definition(),
+        // order::definition(),
+        // trade::definition()
     ]
 
     genesis: || {

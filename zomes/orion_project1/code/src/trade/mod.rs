@@ -6,11 +6,11 @@ use holochain_core_types_derive::DefaultJson;
 use hdk::holochain_core_types::{
     cas::content::Address,
     entry::Entry,
-    dna::entry_types::Sharing,
     error::HolochainError,
     json::JsonString,
     hash::HashString,
-    validation::EntryValidationData
+    validation::EntryValidationData,
+    dna::entry_types::Sharing
 };
 use std::time::{SystemTime, UNIX_EPOCH};
 
@@ -33,30 +33,33 @@ enum Status {
 }
 
 impl Trade {
-    fn new(order_addr: HashString, price: f64, asset_code: &str) -> Self {
+    fn new(order_addr: HashString, price: f64, asset_code: &str) -> Option<Self> {
         // todo - check if 'order' exists
         // todo - check price less or equal to the price of 'order'
         // todo - check asset_code
 
 
-        // todo - extract
-        let source_order_raw = hdk::get_entry(&order_addr)?;
-        if let Some(Entry::App(_, json_str)) = source_order_raw {
-            // todo: for simplicity
-            let ts = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
+        match hdk::get_entry(&order_addr) {
+            Ok(source_order_raw) => {
+                if let Some(Entry::App(_, json_str)) = source_order_raw {
+                    // todo: for simplicity
+                    let ts = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
 
-            Trade {
-                order_addr: order_addr,
-                price: price,
-                asset_code: asset_code.into(),
-                status: Status::New, //todo
-                inserted_at: ts
+                    Some(Trade {
+                        order_addr: order_addr,
+                        price: price,
+                        asset_code: asset_code.into(),
+                        status: Status::New, //todo
+                        inserted_at: ts
+                    })
+                } else {
+                    None
+                }
+            },
+            Err(err) => {
+                unimplemented!()
             }
-        } else {
-            //todo
-            unimplemented!()
         }
-
     }
 }
 
@@ -71,26 +74,29 @@ pub fn definition() -> ValidatingEntryType {
         },
 
         // todo
-        validation: |data: hdk::EntryValidationData<KeyAnchor>| {
-            match data {
-                EntryValidationData::Create{entry:_domain_name, data: _} => {
-                    Ok(())
-                },
-                EntryValidationData::Modify{new_entry:_,old_entry:_,old_entry_header:_, data: _} => {
-                   Ok(())
-                },
-                EntryValidationData::Delete{old_entry:_,old_entry_header:_, data: _} => {
-                   Ok(())
-                }
-            }
-        },
+        validation: |data: hdk::EntryValidationData<Trade>| {
 
-        links: [
-            from!(
-                "order",
-                tag: "order"
-            ),
-        ]
+            // todo
+            // match data {
+            //     EntryValidationData::Create{entry:_domain_name, data: _} => {
+            //         Ok(())
+            //     },
+            //     EntryValidationData::Modify{new_entry:_,old_entry:_,old_entry_header:_, data: _} => {
+            //        Ok(())
+            //     },
+            //     EntryValidationData::Delete{old_entry:_,old_entry_header:_, data: _} => {
+            //        Ok(())
+            //     }
+            // }
+        }
+
+        // todo
+        // links: [
+        //     from!(
+        //         "order",
+        //         tag: "order"
+        //     ),
+        // ]
     )
 }
 

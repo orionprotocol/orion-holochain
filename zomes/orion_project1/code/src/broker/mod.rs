@@ -8,9 +8,11 @@ use hdk::holochain_core_types::{
     error::HolochainError,
     json::{JsonString,RawString},
     hash::HashString,
+    dna::entry_types::Sharing
 };
 
 
+#[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
 struct Broker {
     name: String
 }
@@ -20,8 +22,10 @@ pub fn definition() -> ValidatingEntryType {
       name: "broker",
       description: "a middle man between a user and an exchange",
       sharing: Sharing::Public,
-      validation_package: || hdk::ValidationPackageDefinition::Entry,
-      validation: |validation_data: hdk::EntryValidationData| {
+      validation_package: || {
+        hdk::ValidationPackageDefinition::Entry
+      },
+      validation: |validation_data: hdk::EntryValidationData<Broker>| {
           Ok(())
       },
 
@@ -30,7 +34,9 @@ pub fn definition() -> ValidatingEntryType {
           to!(
               "%agent_id",
               tag: "owner",
-              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation_package: || {
+                hdk::ValidationPackageDefinition::Entry
+              },
               validation:  | _validation_data: hdk::LinkValidationData| {
                   Ok(())
               }
@@ -39,7 +45,9 @@ pub fn definition() -> ValidatingEntryType {
           to!(
               "balance",
               tag: "balances",
-              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation_package: || {
+                hdk::ValidationPackageDefinition::Entry
+              },
               validation: |_validation_data: hdk::LinkValidationData| {
                   Ok(())
               }
@@ -48,11 +56,13 @@ pub fn definition() -> ValidatingEntryType {
           to!(
               "order",
               tag: "open_orders",
-              validation_package: || hdk::ValidationPackageDefinition::Entry,
+              validation_package: || {
+                hdk::ValidationPackageDefinition::Entry
+              },
               validation: |_validation_data: hdk::LinkValidationData| {
                   Ok(())
               }
-          )
+          ),
 
           to!(
               "order",
