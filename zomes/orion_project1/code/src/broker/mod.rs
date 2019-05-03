@@ -1,6 +1,7 @@
 use hdk::entry_definition::ValidatingEntryType;
 use hdk::{
     error::ZomeApiResult,
+    error::ZomeApiError
 };
 use hdk::holochain_core_types::{
     cas::content::Address,
@@ -19,20 +20,23 @@ struct Broker {
 
 pub fn definition() -> ValidatingEntryType {
     unimplemented!()
+}
+
+// pub fn handle_create(name: &str) -> ZomeApiResult<Address> {
+pub fn handle_create(name: String) -> Result<HashString, ZomeApiError> {
+    // let brk = Broker{name: name.into()};
+    // let entry = Entry::App("broker".into(), brk.into());
+    // let new_addr = hdk::commit_entry(&entry)?;
+    // Ok(new_addr);
+
+    unimplemented!()
 
 }
 
-pub fn handle_create(name: &str) -> ZomeApiResult<Address> {
-    let brk = Broker{name: name.into()};
-    let entry = Entry::App("broker".into(), brk.into());
-    let new_addr = hdk::commit_entry(&entry)?;
-    Ok(new_addr)
-}
-
-pub fn get(addr: Address) -> ZomeApiResult<Option<Entry>> {
+pub fn get(addr: HashString) -> Result<Option<Entry>, ZomeApiError> {
     hdk::get_entry(&addr)
 }
 
-fn trade(balance_addr: HashString, order_addr: HashString, ) {
-  unimplemented!()
+fn trade(balance_addr: HashString, order_addr: HashString) {
+    unimplemented!()
 }

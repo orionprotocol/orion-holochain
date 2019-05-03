@@ -13,7 +13,7 @@ use hdk::holochain_core_types::{
 };
 
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
-struct Balance {
+pub struct Balance {
     asset_code: String,
     amount: i64,
     broker_addr: HashString,
@@ -59,7 +59,7 @@ pub fn handle_update() {
 
 //create new balance
 // todo - needed? merge with 'handle_update'?
-pub fn hande_create(blc: Balance, broker_addr: HashString) -> ZomeApiResult<Address> {
+pub fn hande_create(blc: Balance, broker_addr: HashString) -> ZomeApiResult<HashString> {
     let blc_entry = Entry::App("balance".into(), blc.into());
     let blc_addr = hdk::commit_entry(&blc_entry)?;
     hdk::link_entries(&broker_addr, &blc_addr, "balances")?;

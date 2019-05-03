@@ -1,6 +1,7 @@
 use hdk::{
     self,
     entry_definition::ValidatingEntryType,
+    error::ZomeApiError
 };
 use holochain_core_types_derive::DefaultJson;
 use hdk::holochain_core_types::{
@@ -68,6 +69,6 @@ pub fn definition() -> ValidatingEntryType {
     unimplemented!()
 }
 
-pub fn handle_create() {
+pub fn handle_create() -> Result<HashString, ZomeApiError> {
     unimplemented!()
 }
