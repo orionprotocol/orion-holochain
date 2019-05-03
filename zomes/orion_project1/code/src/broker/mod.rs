@@ -18,62 +18,8 @@ struct Broker {
 }
 
 pub fn definition() -> ValidatingEntryType {
-    entry!(
-      name: "broker",
-      description: "a middle man between a user and an exchange",
-      sharing: Sharing::Public,
-      validation_package: || {
-        hdk::ValidationPackageDefinition::Entry
-      },
-      validation: |validation_data: hdk::EntryValidationData<Broker>| {
-          Ok(())
-      },
+    unimplemented!()
 
-      links: [
-          //todo: not "from!" ?
-          to!(
-              "%agent_id",
-              tag: "owner",
-              validation_package: || {
-                hdk::ValidationPackageDefinition::Entry
-              },
-              validation:  | _validation_data: hdk::LinkValidationData| {
-                  Ok(())
-              }
-          ),
-
-          to!(
-              "balance",
-              tag: "balances",
-              validation_package: || {
-                hdk::ValidationPackageDefinition::Entry
-              },
-              validation: |_validation_data: hdk::LinkValidationData| {
-                  Ok(())
-              }
-          ),
-
-          to!(
-              "order",
-              tag: "open_orders",
-              validation_package: || {
-                hdk::ValidationPackageDefinition::Entry
-              },
-              validation: |_validation_data: hdk::LinkValidationData| {
-                  Ok(())
-              }
-          ),
-
-          to!(
-              "order",
-              tag: "closed_orders",
-              validation_package: || hdk::ValidationPackageDefinition::Entry,
-              validation: |_validation_data: hdk::LinkValidationData| {
-                  Ok(())
-              }
-          )
-      ]
-    )
 }
 
 pub fn handle_create(name: &str) -> ZomeApiResult<Address> {

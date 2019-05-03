@@ -65,39 +65,7 @@ impl Trade {
 
 
 pub fn definition() -> ValidatingEntryType {
-    entry!(
-        name: "trade",
-        description: "trade or transaction",
-        sharing: Sharing::Public,
-        validation_package: || {
-            hdk::ValidationPackageDefinition::Entry
-        },
-
-        // todo
-        validation: |data: hdk::EntryValidationData<Trade>| {
-
-            // todo
-            // match data {
-            //     EntryValidationData::Create{entry:_domain_name, data: _} => {
-            //         Ok(())
-            //     },
-            //     EntryValidationData::Modify{new_entry:_,old_entry:_,old_entry_header:_, data: _} => {
-            //        Ok(())
-            //     },
-            //     EntryValidationData::Delete{old_entry:_,old_entry_header:_, data: _} => {
-            //        Ok(())
-            //     }
-            // }
-        }
-
-        // todo
-        // links: [
-        //     from!(
-        //         "order",
-        //         tag: "order"
-        //     ),
-        // ]
-    )
+    unimplemented!()
 }
 
 pub fn handle_create() {

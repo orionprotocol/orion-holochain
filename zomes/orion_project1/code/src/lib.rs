@@ -12,14 +12,20 @@ pub mod broker;
 pub mod trade;
 pub mod order;
 pub mod balance;
+use hdk::holochain_core_types::{
+    cas::content::Address,
+    error::HolochainError,
+    json::JsonString,
+    hash::HashString
+};
+use hdk::{
+    error::ZomeApiError
+};
 
 
 define_zome! {
     entries: [
-        broker::definition(),
-        // balance::definition(),
-        // order::definition(),
-        // trade::definition()
+        broker::definition()
     ]
 
     genesis: || {
