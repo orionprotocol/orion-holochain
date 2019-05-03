@@ -66,7 +66,33 @@ impl Trade {
 
 
 pub fn definition() -> ValidatingEntryType {
-    unimplemented!()
+    entry!(
+        name: "trade",
+        description: "trade or transaction",
+        sharing: Sharing::Public,
+        validation_package: || {
+            hdk::ValidationPackageDefinition::Entry
+        },
+
+        // todo
+        validation: |data: hdk::EntryValidationData<Trade>| {
+            Ok(())
+        },
+
+        // todo
+        links: [
+            from!(
+                "order",
+                tag: "order",
+                validation_package: || {
+                    hdk::ValidationPackageDefinition::Entry
+                },
+                validation: |_validation_data: hdk::LinkValidationData| {
+                    Ok(())
+                }
+            )
+        ]
+    )
 }
 
 pub fn handle_create() -> Result<HashString, ZomeApiError> {

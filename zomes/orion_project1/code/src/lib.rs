@@ -25,7 +25,10 @@ use hdk::{
 
 define_zome! {
     entries: [
-        broker::definition()
+        broker::definition(),
+        balance::definition(),
+        order::definition(),
+        trade::definition()
     ]
 
     genesis: || {
