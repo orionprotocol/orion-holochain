@@ -77,15 +77,11 @@ pub fn definition() -> ValidatingEntryType {
     )
 }
 
-// pub fn handle_create(name: &str) -> ZomeApiResult<Address> {
 pub fn handle_create(name: String) -> Result<HashString, ZomeApiError> {
-    // let brk = Broker{name: name.into()};
-    // let entry = Entry::App("broker".into(), brk.into());
-    // let new_addr = hdk::commit_entry(&entry)?;
-    // Ok(new_addr);
-
-    unimplemented!()
-
+    let brk = Broker{name: name.into()};
+    let entry = Entry::App("broker".into(), brk.into());
+    let new_addr = hdk::commit_entry(&entry)?;
+    Ok(new_addr)
 }
 
 pub fn get(addr: HashString) -> Result<Option<Entry>, ZomeApiError> {
