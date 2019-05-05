@@ -88,6 +88,6 @@ pub fn get(addr: HashString) -> Result<Option<Entry>, ZomeApiError> {
     hdk::get_entry(&addr)
 }
 
-fn trade(balance_addr: HashString, order_addr: HashString) {
+pub fn trade(balance_addr: HashString, order_addr: HashString) {
     unimplemented!()
 }
