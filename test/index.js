@@ -10,6 +10,8 @@ const scenario = new Scenario([instanceAlice])
 
 // todo
 scenario.runTape("create broker", async (t, { alice }) => {
-    const addr = alice.call("orion_project1", "create_broker", {"name": "broker1"})
-    t.deepEqual(result, { Ok: { App: ["orion_project1", '{"name": "broker1"}' ] } })
+    const res1 = alice.call("orion_project1", "create_broker", {"name": "broker1"})
+    
+
+    t.deepEqual(res1, { Ok: { App: ["broker", '{"name": "broker1"}' ] } })
 })
