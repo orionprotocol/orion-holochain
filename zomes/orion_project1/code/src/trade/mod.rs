@@ -64,7 +64,6 @@ impl Trade {
     }
 }
 
-
 pub fn definition() -> ValidatingEntryType {
     entry!(
         name: "trade",

@@ -8,10 +8,6 @@ extern crate serde_json;
 #[macro_use]
 extern crate holochain_core_types_derive;
 
-pub mod broker;
-pub mod trade;
-pub mod order;
-pub mod balance;
 use hdk::holochain_core_types::{
     cas::content::Address,
     error::HolochainError,
@@ -21,6 +17,11 @@ use hdk::holochain_core_types::{
 use hdk::{
     error::ZomeApiError
 };
+
+pub mod broker;
+pub mod trade;
+pub mod order;
+pub mod balance;
 
 
 define_zome! {
