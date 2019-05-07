@@ -106,7 +106,9 @@ pub fn handle_approve(addr: HashString) -> Result<(), ZomeApiError> {
 }
 
 pub fn handle_create() -> Result<HashString, ZomeApiError> {
-    unimplemented!()
+    // unimplemented!()
+
+    Ok("todo")
 }
 
 //status of the most recent trade
