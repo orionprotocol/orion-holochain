@@ -105,10 +105,17 @@ pub fn handle_approve(addr: HashString) -> Result<(), ZomeApiError> {
     unimplemented!()
 }
 
-pub fn handle_create() -> Result<HashString, ZomeApiError> {
-    // unimplemented!()
+pub fn handle_create(base_asset_code: &str, quoted_asset_code: &str, direction: Direction, quoted_price_per_unit: f64, amount: f64) -> Result<HashString, ZomeApiError> {
+    let ord1 = Order::new{
+      base_asset_code: base_asset_code,
+      quoted_asset_code: quoted_asset_code,
+      direction: direction,
+      quoted_price_per_unit: quoted_price_per_unit,
+      amount: amount
+    }
 
-    Ok("todo")
+    let ord1_ent = Entry::App("order".into(), ord1.into());
+    Ok(hdk::commit_entry(&ord1_ent)?);
 }
 
 //status of the most recent trade
