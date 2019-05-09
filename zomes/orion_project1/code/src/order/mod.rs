@@ -12,6 +12,7 @@ use hdk::holochain_core_types::{
     json::{JsonString,RawString},
     dna::entry_types::Sharing
 };
+use std::time::{SystemTime, UNIX_EPOCH};
 
 
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
@@ -27,7 +28,7 @@ struct Order {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, DefaultJson)]
-enum Direction {
+pub enum Direction {
     Buy,
     Sell
 }
@@ -72,20 +73,18 @@ pub fn definition() -> ValidatingEntryType {
 impl Order {
 
   // todo
-  fn new() -> Self {
-    unimplemented!()
-    // Order{
-    //   exchange_addr: HashString,
-    //   broker_addr: HashString,
-    //   base_asset_code: String,
-    //   quoted_asset_code: String,
-    //   direction: Direction,
-    //   quoted_price_per_unit: f64,
-    //   quantity: f64,
-
-    //   /*todo - now()*/
-    //   inserted_at: -1
-    // }
+  fn new(base_asset_code: String, quoted_asset_code: String, direction: Direction, quoted_price_per_unit: f64, amount: f64) -> Self {
+    let ts = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
+    Order{
+      exchange_addr: HashString::default(),
+      broker_addr: HashString::default(),
+      base_asset_code: base_asset_code,
+      quoted_asset_code: quoted_asset_code,
+      direction: direction,
+      quoted_price_per_unit: quoted_price_per_unit,
+      amount: amount,
+      inserted_at: ts
+    }
   }
 
     fn calculate_total_price(self) -> f64 {
@@ -105,17 +104,13 @@ pub fn handle_approve(addr: HashString) -> Result<(), ZomeApiError> {
     unimplemented!()
 }
 
-pub fn handle_create(base_asset_code: &str, quoted_asset_code: &str, direction: Direction, quoted_price_per_unit: f64, amount: f64) -> Result<HashString, ZomeApiError> {
-    let ord1 = Order::new{
-      base_asset_code: base_asset_code,
-      quoted_asset_code: quoted_asset_code,
-      direction: direction,
-      quoted_price_per_unit: quoted_price_per_unit,
-      amount: amount
-    }
+
+// todo - replace String with &str
+pub fn handle_create(base_asset_code: String, quoted_asset_code: String, direction: Direction, quoted_price_per_unit: f64, amount: f64) -> Result<HashString, ZomeApiError> {
+    let ord1 = Order::new(base_asset_code, quoted_asset_code, direction, quoted_price_per_unit, amount);
 
     let ord1_ent = Entry::App("order".into(), ord1.into());
-    Ok(hdk::commit_entry(&ord1_ent)?);
+    Ok(hdk::commit_entry(&ord1_ent)?)
 }
 
 //status of the most recent trade

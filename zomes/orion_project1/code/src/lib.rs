@@ -44,7 +44,7 @@ define_zome! {
         }
 
         initialize_order: {
-            inputs: |/*todo*/|,
+            inputs: |base_asset_code: String, quoted_asset_code: String, direction: order::Direction, quoted_price_per_unit: f64, amount: f64|,
             outputs: |result: Result<HashString, ZomeApiError>|,
             handler: order::handle_create
         }
