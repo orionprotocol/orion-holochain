@@ -15,8 +15,8 @@ scenario.runTape("create broker", async (t, { alice }) => {
     // todo:
     // t.deepEqual(res1, { Ok: 'QmYfmS8M4EZRkpkNqyAtCgPaMjguAnbwupvRfpASYo4j9k' });
 
-    
+
     const res2 = alice.call("orion_project1", "initialize_order", {"??name": "todo??"});
-    var {Ok: addr} = res2;
-    t.deepEqual(res2.Ok, addr);
+    var {Ok: addr2} = res2;
+    t.deepEqual(res2.Ok, addr2);
 })
