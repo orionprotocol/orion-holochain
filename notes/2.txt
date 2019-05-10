@@ -1,0 +1,24 @@
+
+
+// todo
+pub fn sign_message(key_id: String, message: String) -> ZomeApiResult<Signature> {
+    if key_id == "" {
+        hdk::sign(message).map(Signature::from)
+    } else {
+        hdk::keystore_sign(key_id, message).map(Signature::from)
+    }
+}
+
+pub fn verify_message(message: String, provenance: Provenance) -> ZomeApiResult<bool> {
+    hdk::verify_signature(provenance, message)
+}
+
+
+
+
+//trade
+            // todo
+            if price > json_str["price"] {
+                //todo
+            }
+

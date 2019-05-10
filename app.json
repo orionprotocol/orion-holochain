@@ -1,0 +1,15 @@
+{
+  "name": "Holochain project1",
+  "description": "Holochain project1",
+  "authors": [
+    {
+      "indentifier": "Alex Maslakov <me@gildedhonour.com>",
+      "public_key_source": "",
+      "signature": ""
+    }
+  ],
+  "version": "0.0.1",
+  "dht": {},
+  "properties": null
+}
+

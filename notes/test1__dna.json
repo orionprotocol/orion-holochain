@@ -1,0 +1,91 @@
+{
+    "Version": 1,
+    "UUID": "15722d01-2584-11e8-b1ef-08002781aba8",
+    "Name": "consumeHolodex",
+    "Properties": {
+        "description": "sample application to bridge to holodex",
+        "language": "en"
+    },
+    "PropertiesSchemaFile": "properties_schema.json",
+    "DHTConfig": {
+      "HashType": "sha2-256"
+    },
+    "BasedOn": {
+        "H": null
+    },
+    "Zomes": [{
+            "Name": "consumeHolodex",
+            "Description": "Main application zome",
+            "RibosomeType": "js",
+            "CodeFile": "consumeHolodex.js",
+            "Entries": [{
+                    "Name": "post",
+                    "DataFormat": "json",
+                    "Schema": "",
+                    "SchemaFile": "post.json",
+                    "Sharing": "public"
+                }, {
+                    "Name": "post_links",
+                    "DataFormat": "links"
+                }
+            ],
+            "RibosomeType": "js",
+            "Functions": [{
+                    "Name": "indexPost",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                }, {
+                    "Name": "searchPosts",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                }, {
+                    "Name": "getPost",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                }
+            ],
+            "BridgeFuncs": null,
+            "BridgeTo": "holodex"
+        },
+        {
+          "Name": "holodex",
+          "Description": "Zome dealing with functions relating to node to node communication and selection for index nodes",
+          "RibosomeType": "js",
+          "CodeFile": "holodex.js",
+          "Entries": [
+            {
+                "Name": "VolunteerNode",
+                "DataFormat": "string",
+                "Sharing": "public"
+            },
+            {
+                "Name": "volunteer_links",
+                "DataFormat": "links",
+                "Sharing": "public"
+            }
+          ],
+          "Functions": [
+            {
+              "Name":"bridgeHolodex",
+              "CallingType": "string",
+              "Exposure": "public"
+            },
+            {
+              "Name": "selectIndexNode",
+              "CallingType": "string",
+              "Exposure": "public"
+            },
+            {
+              "Name": "indexObject",
+              "CallingType": "json",
+              "Exposure": "public"
+            },
+            {
+              "Name": "searchContent",
+              "CallingType": "string",
+              "Exposure": "public"
+            }
+          ]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+[package]
+name = "orion_project1"
+version = "0.1.0"
+authors = ["alex maslakov <alex@serendipia.email>"]
+
+[dependencies]
+hdk = { git = "https://github.com/holochain/holochain-rust", tag = "v0.0.14-alpha1" }
+holochain_core_types_derive = { git = "https://github.com/holochain/holochain-rust" }
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["cdylib"]

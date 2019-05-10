@@ -1,0 +1,31 @@
+Order {
+   ord_id = HashString // Unique identifier
+   baseAsset = 'BTC'
+   quoteAsset = 'USD'
+   side = buy or sell // Enum
+   price = 5312.19 // Decimal
+   qty = 0.64 //Decimal
+   timestamp // when order was created in milliseconds since epoch
+
+This order means someone wants to buy 0.64 BTC (bitcoin) for price 5312.19 for 1 BTC, 
+
+thus paying 0.64*5312.19 = 3400.44 USD for this.
+
+
+
+
+
+
+    In Broker zoom orders are created and signed by Orion only - dedicated single Agent, 
+    which address is stored in genesis in code.
+\
+
+
+
+--------------------
+
+
+Register Broker by Agent
+2.1 Create Order by Orion (OrderInit)
+2.2 Accept Order by Broker (OrderAccept)
+Create Trade by Broke
